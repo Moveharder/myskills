@@ -1,0 +1,602 @@
+/* ============================================
+   Neon Electronic Theme for Reveal.js
+   霓虹电子风格主题
+   ============================================ */
+
+/* CSS Variables - 霓虹色系 */
+:root {
+    --neon-cyan: #00f5ff;
+    --neon-pink: #ff00ff;
+    --neon-purple: #bf00ff;
+    --neon-blue: #0080ff;
+    --neon-green: #00ff80;
+    
+    --bg-dark: #0a0a0f;
+    --bg-darker: #050508;
+    --bg-gradient-start: #0a0a0f;
+    --bg-gradient-end: #1a0a2e;
+    
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --text-muted: #666666;
+    
+    --glow-cyan: 0 0 10px #00f5ff, 0 0 20px #00f5ff, 0 0 30px #00f5ff;
+    --glow-pink: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+    --glow-purple: 0 0 10px #bf00ff, 0 0 20px #bf00ff, 0 0 30px #bf00ff;
+}
+
+/* Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    font-family: 'Noto Sans SC', 'Rajdhani', sans-serif;
+    color: var(--text-primary);
+    overflow: hidden;
+}
+
+/* Reveal.js Viewport */
+.reveal-viewport {
+    background: 
+        /* Grid pattern */
+        linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+        /* Gradient background */
+        linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    background-size: 50px 50px, 50px 50px, 100% 100%;
+}
+
+/* Scan Line Effect */
+.scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+    animation: scanline 3s linear infinite;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+@keyframes scanline {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+/* ============================================
+   Typography - 霓虹文字效果
+   ============================================ */
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+    font-family: 'Rajdhani', 'Noto Sans SC', sans-serif;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0.02em;
+}
+
+.reveal h1 {
+    font-size: 3em;
+}
+
+.reveal h2 {
+    font-size: 2.2em;
+}
+
+.reveal h3 {
+    font-size: 1.6em;
+}
+
+/* Neon Title */
+.neon-title {
+    font-size: 4em;
+    font-weight: 700;
+    font-family: 'Rajdhani', sans-serif;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: var(--glow-cyan);
+    animation: neonPulse 2s ease-in-out infinite alternate;
+    margin-bottom: 0.3em;
+}
+
+.neon-subtitle {
+    font-size: 2em;
+    font-weight: 500;
+    color: var(--neon-cyan);
+    text-shadow: var(--glow-cyan);
+    margin-bottom: 0.5em;
+}
+
+.neon-tagline {
+    font-size: 1.2em;
+    color: var(--text-secondary);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+}
+
+@keyframes neonPulse {
+    from {
+        filter: drop-shadow(0 0 10px var(--neon-cyan)) drop-shadow(0 0 20px var(--neon-pink));
+    }
+    to {
+        filter: drop-shadow(0 0 20px var(--neon-cyan)) drop-shadow(0 0 40px var(--neon-pink));
+    }
+}
+
+/* ============================================
+   Slide Styles - 幻灯片样式
+   ============================================ */
+
+/* Cover Slide */
+.reveal .slides section.cover-slide {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100% !important;
+    top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Section Title Slide */
+.section-title-slide {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.section-number {
+    font-size: 8em;
+    font-weight: 700;
+    font-family: 'Rajdhani', sans-serif;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: -0.5em;
+}
+
+.section-title-slide h2 {
+    color: var(--neon-cyan);
+    text-shadow: var(--glow-cyan);
+    margin: 0.5em 0;
+}
+
+.section-divider {
+    width: 200px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-pink), transparent);
+    margin-top: 1em;
+    animation: dividerGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes dividerGlow {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+}
+
+/* TOC Slide */
+.toc-slide {
+    text-align: center;
+}
+
+.toc-slide h2 {
+    color: var(--neon-cyan);
+    text-shadow: var(--glow-cyan);
+    margin-bottom: 1.5em;
+}
+
+.toc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.toc-item {
+    background: rgba(0, 245, 255, 0.05);
+    border: 1px solid rgba(0, 245, 255, 0.2);
+    border-radius: 10px;
+    padding: 1.5em;
+    transition: all 0.3s ease;
+}
+
+.toc-item:hover {
+    background: rgba(0, 245, 255, 0.1);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+    transform: translateY(-5px);
+}
+
+.toc-number {
+    font-size: 2em;
+    font-weight: 700;
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--neon-pink);
+    text-shadow: var(--glow-pink);
+    margin-bottom: 0.3em;
+}
+
+.toc-title {
+    font-size: 1.1em;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Content Slide */
+.content-slide {
+    text-align: left;
+    padding: 2em;
+}
+
+.content-slide h3 {
+    color: var(--neon-cyan);
+    text-shadow: var(--glow-cyan);
+    margin-bottom: 1.5em;
+    text-align: center;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Content Card */
+.content-card {
+    background: rgba(0, 245, 255, 0.03);
+    border: 1px solid rgba(0, 245, 255, 0.15);
+    border-radius: 12px;
+    padding: 1.5em;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.content-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.content-card:hover {
+    background: rgba(0, 245, 255, 0.08);
+    border-color: rgba(0, 245, 255, 0.4);
+    box-shadow: 0 0 30px rgba(0, 245, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+.content-card:hover::before {
+    opacity: 1;
+}
+
+.content-card.full-width {
+    grid-column: 1 / -1;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.card-icon {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+
+.card-title {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--neon-cyan);
+    margin-bottom: 0.8em;
+    text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+}
+
+.card-content {
+    color: var(--text-primary);
+    line-height: 1.8;
+}
+
+.card-content p {
+    margin: 0.5em 0;
+}
+
+.card-content ul {
+    margin: 0.5em 0;
+    padding-left: 1.5em;
+}
+
+.card-content li {
+    margin: 0.3em 0;
+}
+
+.card-content code {
+    background: rgba(0, 245, 255, 0.1);
+    border: 1px solid rgba(0, 245, 255, 0.3);
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    color: var(--neon-cyan);
+    font-size: 0.9em;
+}
+
+.card-note {
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid rgba(0, 245, 255, 0.1);
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+/* Code Example */
+.code-example {
+    margin: 1em 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 245, 255, 0.2);
+}
+
+.code-example pre {
+    margin: 0;
+    padding: 1em;
+    background: rgba(0, 0, 0, 0.5) !important;
+}
+
+.code-example code {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    color: var(--neon-cyan) !important;
+}
+
+/* End Slide */
+.reveal .slides section.end-slide {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100% !important;
+    top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.end-quote {
+    font-size: 1.3em;
+    color: var(--neon-pink);
+    text-shadow: var(--glow-pink);
+    margin-top: 1em;
+    font-style: italic;
+}
+
+/* ============================================
+   Reveal.js Controls - 控制元素
+   ============================================ */
+
+.reveal .controls {
+    color: var(--neon-cyan);
+}
+
+.reveal .controls button {
+    color: var(--neon-cyan);
+}
+
+.reveal .controls button:hover {
+    color: var(--neon-pink);
+}
+
+/* Progress Bar */
+.reveal .progress {
+    background: rgba(0, 245, 255, 0.1);
+    height: 4px;
+}
+
+.reveal .progress span {
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+    box-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* Slide Number */
+.reveal .slide-number {
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--neon-cyan);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8em;
+    padding: 0.3em 0.6em;
+    border: 1px solid rgba(0, 245, 255, 0.3);
+    border-radius: 4px;
+}
+
+/* ============================================
+   Thumbnail Navigation - 缩略图导航
+   ============================================ */
+
+.thumbnail-nav {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    background: rgba(10, 10, 15, 0.95);
+    border: 2px solid var(--neon-cyan);
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(0, 245, 255, 0.3);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.thumbnail-header {
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+    color: var(--bg-dark);
+    padding: 1em;
+    font-weight: 600;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.thumbnail-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 1em;
+    padding: 1.5em;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.thumbnail-item {
+    aspect-ratio: 16/9;
+    background: rgba(0, 245, 255, 0.1);
+    border: 1px solid rgba(0, 245, 255, 0.3);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.thumbnail-item:hover {
+    background: rgba(0, 245, 255, 0.2);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 245, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.thumbnail-number {
+    font-size: 1.5em;
+    font-weight: 700;
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--neon-cyan);
+}
+
+/* ============================================
+   Animations - 动画效果
+   ============================================ */
+
+.reveal .slides section {
+    transition: all 0.5s ease;
+}
+
+.reveal .slides section.present {
+    opacity: 1;
+}
+
+.reveal .slides section.past,
+.reveal .slides section.future {
+    opacity: 0.3;
+}
+
+/* ============================================
+   Responsive Design - 响应式设计
+   ============================================ */
+
+@media screen and (max-width: 1200px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5em;
+    }
+    
+    .toc-grid {
+        grid-template-columns: 1fr;
+        gap: 1em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .neon-title {
+        font-size: 2.5em;
+    }
+    
+    .neon-subtitle {
+        font-size: 1.5em;
+    }
+    
+    .section-number {
+        font-size: 5em;
+    }
+    
+    .content-card {
+        padding: 1em;
+    }
+    
+    .card-icon {
+        font-size: 2em;
+    }
+    
+    .card-title {
+        font-size: 1.1em;
+    }
+}
+
+/* ============================================
+   Utility Classes - 工具类
+   ============================================ */
+
+.text-cyan {
+    color: var(--neon-cyan);
+}
+
+.text-pink {
+    color: var(--neon-pink);
+}
+
+.text-purple {
+    color: var(--neon-purple);
+}
+
+.glow-cyan {
+    text-shadow: var(--glow-cyan);
+}
+
+.glow-pink {
+    text-shadow: var(--glow-pink);
+}
+
+.glow-purple {
+    text-shadow: var(--glow-purple);
+}
+
+/* ============================================
+   Print Styles - 打印样式
+   ============================================ */
+
+@media print {
+    .reveal .slides section {
+        page-break-after: always;
+    }
+    
+    .scan-line {
+        display: none;
+    }
+    
+    .thumbnail-nav {
+        display: none !important;
+    }
+}

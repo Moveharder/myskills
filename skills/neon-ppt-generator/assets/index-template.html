@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}}</title>
+    
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.css">
+    
+    <!-- Highlight.js for code syntax highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/atom-one-dark.css">
+    
+    <!-- Custom Neon Theme -->
+    <link rel="stylesheet" href="css/neon-theme.css">
+</head>
+<body>
+    <div class="reveal">
+        <div class="reveal-viewport">
+            <div class="slides">
+                {{SLIDES_CONTENT}}
+            </div>
+        </div>
+        
+        <!-- Thumbnail Navigation Panel -->
+        <div class="thumbnail-nav" id="thumbnailNav">
+            <div class="thumbnail-header">幻灯片导航</div>
+            <div class="thumbnail-container" id="thumbnailContainer"></div>
+        </div>
+    </div>
+
+    <!-- Reveal.js -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
+    
+    <!-- Highlight.js -->
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/languages/markdown.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script>
+        // Initialize Reveal.js
+        Reveal.initialize({
+            hash: true,
+            slideNumber: 'c/t',
+            showSlideNumber: 'all',
+            controls: true,
+            progress: true,
+            center: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            
+            // Keyboard shortcuts
+            keyboard: {
+                70: function() { // F key - fullscreen
+                    if (!document.fullscreenElement) {
+                        document.documentElement.requestFullscreen();
+                    } else {
+                        document.exitFullscreen();
+                    }
+                },
+                27: function() { // ESC key - toggle thumbnail nav
+                    toggleThumbnailNav();
+                }
+            },
+            
+            // Plugins
+            plugins: []
+        });
+
+        // Highlight.js initialization
+        hljs.highlightAll();
+
+        // Thumbnail navigation
+        let thumbnailNavVisible = false;
+        const thumbnailNav = document.getElementById('thumbnailNav');
+        const thumbnailContainer = document.getElementById('thumbnailContainer');
+
+        function toggleThumbnailNav() {
+            thumbnailNavVisible = !thumbnailNavVisible;
+            thumbnailNav.style.display = thumbnailNavVisible ? 'block' : 'none';
+            
+            if (thumbnailNavVisible && thumbnailContainer.children.length === 0) {
+                generateThumbnails();
+            }
+        }
+
+        function generateThumbnails() {
+            const slides = document.querySelectorAll('.slides > section');
+            slides.forEach((slide, index) => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = 'thumbnail-item';
+                thumbnail.innerHTML = `<div class="thumbnail-number">${index + 1}</div>`;
+                thumbnail.addEventListener('click', () => {
+                    Reveal.slide(index);
+                    toggleThumbnailNav();
+                });
+                thumbnailContainer.appendChild(thumbnail);
+            });
+        }
+
+        // Add keyboard hint
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'h' || e.key === 'H') {
+                alert('快捷键提示：\n\n← → ↑ ↓：翻页\nF：全屏模式\nESC：缩略图导航\nH：显示帮助');
+            }
+        });
+    </script>
+</body>
+</html>
